@@ -1,7 +1,21 @@
 
-[editor]
-shell = ["nu", "--env-config", "~\\AppData\\Roaming\\nushell\\env.nu", "--config", "~\\AppData\\Roaming\\nushell\\config.nu", "-c"]
+theme = "darcula"
 
+[editor]
+line-number = "relative"
+cursor-shape.insert = "bar"
+
+shell = ["nu", "--env-config", "~\\AppData\\Roaming\\nushell\\env.nu", "--config", "~\\AppData\\Roaming\\nushell\\config.nu", "-c"]
+# Hides the red/yellow icons in the left margin
+gutters = ["line-numbers", "spacer", "diff"]
+
+# Disables the diagnostic messages that appear at the end of the line
+end-of-line-diagnostics = "disable"
+[editor.lsp]
+# Disables the [!] and [X] icons in the left margin (the gutter)
+display-messages = false
+# Disables the tiny text that sometimes appears at the end of lines
+display-inlay-hints = false
 [keys.normal]
 "A-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 "A-down" = ["extend_to_line_bounds", "delete_selection", "move_line_down", "paste_before"]
