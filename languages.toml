@@ -7,7 +7,8 @@ use-grammars = { except = [ "wren", "gemini" ] }
 
 [language-server]
 
- purescript-language-server = { command = "purescript-language-server", args = ["--stdio"] }
+purescript-language-server = { command = "purescript-language-server", args = ["--stdio"] }
+c-language-server = { command = "clangd", args = ["--std=c23", "-Wall", "Wextra", "--background-index", "--clang-tidy", "--fallback-style=llvm", "--", "-xc"]}
 
 
 [[language]]
@@ -23,13 +24,13 @@ indent = { tab-width = 4, unit = "    " }
 auto-format = true
 formatter = { command = "purs-tidy", args = ["format", "--indent", "4"] }
 
-[language-server.clangd]
-command = "clangd"
-args = [
+# [language-server.clangd]
+# command = "clangd"
+# args = [
     # "--header-insertion=never",      # Don't touch my code
-    "--complete-all-scopes=false",   # Only suggest what I've included
+    # "--complete-all-scopes=false",   # Only suggest what I've included
     # "--background-index=false",      # Stop scanning files in the background
-]
+# ]
 
 # This is the magic line: it kills the nagging, keeps the typing help
 [[language]]
@@ -40,6 +41,7 @@ file-types = ["c", "h"]
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
 # language-servers = [ { name = "clangd", except-features = ["diagnostics"] } ]
+language-servers = [ "clangd" ]
 indent = { tab-width = 4, unit = "    " }
 
 [language.debugger]
@@ -68,3 +70,21 @@ args = { console = "internalConsole", attachCommands = [ "platform select remote
 [[grammar]]
 name = "c"
 source = { git = "https://github.com/tree-sitter/tree-sitter-c", rev = "7fa1be1b694b6e763686793d97da01f36a0e5c12" }
+
+[[language]]
+name = "text"
+scope = "source.txt"
+file-types = ["txt"]
+indent = {tab-width = 4, unit = "    "}
+
+[[language]]
+name = "default"
+scope = "source.default"
+file-types = ["*"]
+indent = {tab-width = 4, unit = "    "}
+
+[[language]]
+name = "nim"
+scope = "sourse.nim"
+file-types = ["nim"]
+indent = {tab-width = 4, unit = "    "}
